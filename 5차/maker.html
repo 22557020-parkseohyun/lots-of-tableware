@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <title>그릇 만들기 | 그릇그릇 가득가득</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html" aria-label="그릇그릇 가득가득 메인으로"><span class="brand-mark">그</span><span>그릇그릇 가득가득</span></a><div class="top-right"><span class="saved"><i></i> 작품은 이 기기에 저장</span><button class="my-works-button" id="myWorksBtn" type="button">내 작품</button><button class="reset" id="resetBtn">처음부터</button></div></header>
+  <main>
+    <section class="intro"><div class="eyebrow"><span>OBJECTS, REIMAGINED</span><b>✳</b> ICON STUDIO</div><h1>책상 위에 놓일<br><em>작은 도자기</em>를 빚어요.</h1><p>그릇의 형태와 유약 색을 골라 나만의 PC 아이콘을 만들어보세요.</p></section>
+    <div class="workspace">
+      <section class="preview-column">
+        <div class="preview-head"><div><span class="step">PREVIEW</span><h2>지금 빚고 있어요</h2></div><div class="view-toggle"><button class="active" data-view="light">밝게</button><button data-view="dark">어둡게</button></div></div>
+        <div class="preview-scene" id="scene"><div class="scene-sun"></div><div class="scene-grid"></div><div class="icon-tile" id="iconTile"><canvas id="iconCanvas" width="1024" height="1024"></canvas><span id="iconLabel">나의 도자기</span></div><div class="scene-caption"><span>DESKTOP PREVIEW</span><span>1024 × 1024</span></div></div>
+        <div class="preview-note"><span class="sparkle">✦</span><span>그릇 유약과 장식 색을 따로 바꿀 수 있어요.</span></div>
+        <div class="download-card"><div class="download-copy"><span class="step">READY TO TAKE HOME?</span><div class="download-heading"><h3>완성한 아이콘을 저장하세요</h3><button class="info-button" type="button" data-info="download" aria-label="다운로드와 적용 방법 안내">i</button></div><p>사용하는 컴퓨터에 맞는 파일을 내려받을 수 있어요.</p></div><div class="download-actions"><button class="download-btn windows" id="downloadIco"><span class="os-symbol">⊞</span><span><b>Windows</b><small>.ICO 아이콘</small></span><span class="arrow">↓</span></button><button class="download-btn mac" id="downloadIcns"><span class="os-symbol apple">●</span><span><b>Mac</b><small>PNG 1024px ZIP</small></span><span class="arrow">↓</span></button></div></div>
+      </section>
+      <aside class="editor">
+        <div class="editor-title"><div><span class="step">YOUR CANVAS</span><h2>아이콘 만들기</h2></div><span class="counter">01 <i>/</i> 04</span></div>
+        <div class="form-section"><div class="section-label"><span class="number">01</span><div><h3>그릇 형태</h3><p>마음에 드는 도자기를 골라주세요.</p></div><button class="info-button" type="button" data-info="shape" aria-label="그릇 형태 안내">i</button></div><button class="multi-select-button" id="multiSelectBtn" type="button" aria-pressed="false">여러 그릇 선택</button><div class="object-grid" id="objectGrid"></div></div>
+        <div class="form-section color-section"><div class="section-label"><span class="number">02</span><div><h3>그릇 유약 색상</h3><p>유약 색을 고르거나 원래 색으로 되돌릴 수 있어요.</p></div><button class="info-button" type="button" data-info="glaze" aria-label="유약 색상 안내">i</button></div><div class="swatches" id="swatches"></div><div class="custom-color"><label for="customColor">직접 고르기</label><input id="customColor" type="color" value="#8d9b79"><span id="colorName">세이지 그린</span></div></div>
+        <div class="form-section decor-section"><div class="section-label"><span class="number">03</span><div><h3>장식 색상</h3><p>선택한 색이 장식 무늬에 자동 적용돼요.</p></div><button class="info-button" type="button" data-info="decor" aria-label="장식 색상과 스타일 안내">i</button></div><div class="swatches decor-swatches" id="decorSwatches"></div><div class="custom-color"><label for="decorColorPicker">장식 색 직접 고르기</label><input id="decorColorPicker" type="color" value="#315b9b"><span id="decorColorName">청화 블루</span></div><div class="decor-tools"><button id="decorModeBtn" type="button" aria-pressed="false">세부 무늬 편집</button><button id="clearDecor" type="button">직접 칠한 색 지우기</button></div><div class="paint-controls" id="paintControls" hidden><div class="paint-tools" role="group" aria-label="무늬 편집 도구"><button id="undoDecor" type="button">실행 취소</button><button id="paintBrush" type="button" class="active" aria-pressed="true">브러시</button><button id="paintEraser" type="button" aria-pressed="false">지우개</button></div><label class="brush-size" for="brushSize"><span>크기 조절</span><input id="brushSize" type="range" min="8" max="72" step="2" value="34"><output id="brushSizeValue" for="brushSize">34</output></label></div><p class="decor-hint" id="decorHint">세부 무늬 편집에서 브러시·지우개·실행 취소를 사용할 수 있어요.</p><div class="style-saver"><div class="style-saver-heading"><button id="styleToggleBtn" class="style-toggle-button" type="button" aria-expanded="false">내 스타일 <span>⌄</span></button><small>유약과 장식 색 조합을 저장하고 적용해요.</small></div><div class="style-save-row"><input id="styleNameInput" maxlength="24" placeholder="스타일 이름 (예: 봄날 청화)" aria-label="저장할 스타일 이름"><button id="saveStyleBtn" type="button">스타일 저장</button></div><div id="stylePanel" class="style-panel" hidden><div id="styleList" class="style-list"></div></div></div></div>
+        <div class="form-section"><div class="section-label"><span class="number">04</span><div><h3>아이콘 이름</h3><p>바탕화면에 표시할 이름이에요.</p></div><button class="info-button" type="button" data-info="name" aria-label="아이콘 이름 안내">i</button></div><label class="input-wrap"><span>✳</span><input id="nameInput" maxlength="18" value="나의 도자기" aria-label="아이콘 이름"><small id="charCount">6 / 18</small></label></div>
+        <div class="editor-foot"><span class="lock">◈</span><span>이미지는 이 브라우저 안에서만 처리돼요.</span></div>
+        <button class="make-button" id="saveCreationBtn" type="button"><span>내 작품에 저장</span><b>＋</b></button>
+      </aside>
+    </div>
+    <footer><span>HANDMADE FOR YOUR DESKTOP</span><span>그릇그릇 가득가득 <b>✳</b> 2026</span></footer>
+  </main>
+  <div class="toast" id="toast">아이콘을 저장했어요.</div>
+  <dialog class="works-dialog" id="worksDialog" aria-labelledby="worksTitle">
+    <button class="dialog-close" id="closeWorks" aria-label="닫기">×</button>
+    <div class="works-eyebrow">MY POTTERY <span>✳</span></div>
+    <div class="works-title-row"><h2 id="worksTitle">내가 만든 그릇</h2><button class="info-button" type="button" data-info="library" aria-label="내 작품 저장 안내">i</button></div>
+    <p class="works-description">이 브라우저에 저장한 작품을 그룹별로 정리하고 다시 열 수 있어요.</p>
+    <div class="group-toolbar"><div class="group-tabs" id="groupTabs"></div><button class="create-group-button" id="createGroupBtn" type="button">＋ 그룹 만들기</button></div>
+    <form class="group-form" id="groupForm" hidden><input id="groupNameInput" maxlength="24" placeholder="새 그룹 이름" aria-label="새 그룹 이름"><button type="submit">추가</button><button id="cancelGroupBtn" type="button">취소</button></form>
+    <div class="works-grid" id="worksGrid"></div>
+  </dialog>
+  <dialog class="info-dialog" id="infoDialog" aria-labelledby="infoTitle">
+    <button class="dialog-close" id="closeInfo" type="button" aria-label="닫기">×</button>
+    <div class="works-eyebrow">QUICK GUIDE <span>✳</span></div>
+    <h2 id="infoTitle">이용 안내</h2>
+    <div class="info-content" id="infoContent"></div>
+    <button class="info-done" id="infoDone" type="button">확인했어요</button>
+  </dialog>
+  <script src="app.js?v=guide-20261112"></script>
+</body>
+</html>
